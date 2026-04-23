@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Winpro Architects | Junior Architect Portal</title>
+    <title>Winpro Architects | Management Portal</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #C5A059; /* Default Gold */
+            --primary: #C5A059;
             --dark: #0a0b10;
             --sidebar: #11141a;
             --glass: rgba(255, 255, 255, 0.03);
             --border: rgba(255, 255, 255, 0.1);
         }
 
-        /* Theme Styles */
+        /* Themes */
+        body.theme-gold { --primary: #C5A059; }
         body.theme-blue { --primary: #3498db; }
         body.theme-green { --primary: #2ecc71; }
         body.theme-red { --primary: #e74c3c; }
-        body.theme-purple { --primary: #9b59b6; }
 
         body {
             margin: 0;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--dark);
-            /* High-Detail Architectural Background */
+            /* High-End Architectural Technical Background */
             background-image: 
-                linear-gradient(rgba(10, 11, 16, 0.94), rgba(10, 11, 16, 0.94)),
+                linear-gradient(rgba(10, 11, 16, 0.96), rgba(10, 11, 16, 0.96)),
                 url('https://www.transparenttextures.com/patterns/blueprint.png'),
                 url('https://www.transparenttextures.com/patterns/grid-me.png');
             background-attachment: fixed;
             color: white;
             display: flex;
-            transition: 0.3s;
+            min-height: 100vh;
+            transition: all 0.3s ease;
         }
 
-        /* Sidebar */
+        /* Sidebar Styling */
         .sidebar {
             width: 280px;
             background: var(--sidebar);
@@ -53,14 +54,15 @@
             font-size: 28px;
             font-weight: 900;
             color: var(--primary);
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-align: center;
             border-bottom: 2px solid var(--primary);
             padding-bottom: 10px;
+            margin-bottom: 40px;
             transition: 0.3s;
         }
 
-        .nav-menu { margin-top: 30px; flex-grow: 1; }
+        .nav-menu { flex-grow: 1; }
         .nav-item {
             display: flex;
             align-items: center;
@@ -71,65 +73,73 @@
             border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
-            margin-bottom: 5px;
-            font-size: 14px;
+            margin-bottom: 8px;
         }
         .nav-item:hover, .nav-item.active { background: rgba(255, 255, 255, 0.05); color: var(--primary); }
 
         /* Theme Switcher */
-        .theme-panel {
-            padding: 15px;
+        .theme-section {
             background: rgba(255,255,255,0.02);
-            border-radius: 10px;
-            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
         }
-        .theme-dots { display: flex; gap: 10px; margin-top: 10px; }
-        .dot { width: 20px; height: 20px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; }
-        .dot:hover { border-color: white; }
+        .dots-container { display: flex; gap: 12px; margin-top: 10px; }
+        .dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
+        .dot:hover { transform: scale(1.2); border-color: white; }
 
         /* Main Content */
-        .main { margin-left: 280px; padding: 40px; width: 100%; }
-        .header-title { border-left: 4px solid var(--primary); padding-left: 15px; margin-bottom: 30px; transition: 0.3s; }
-        .header-title h1 { margin: 0; font-size: 24px; text-transform: uppercase; }
+        .main { margin-left: 280px; padding: 40px; width: 100%; box-sizing: border-box; }
+        .header-panel { border-left: 4px solid var(--primary); padding-left: 20px; margin-bottom: 40px; transition: 0.3s; }
+        .header-panel h1 { margin: 0; font-size: 28px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Form Box */
-        .action-box { 
+        /* Action Form */
+        .glass-box { 
             background: var(--glass); 
-            padding: 30px; 
-            border-radius: 15px; 
+            padding: 35px; 
+            border-radius: 20px; 
             border: 1px solid var(--border); 
-            backdrop-filter: blur(10px); 
+            backdrop-filter: blur(15px); 
             margin-bottom: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .grid-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+        
+        .input-group label { display: block; font-size: 11px; color: var(--primary); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px; }
         input, select { 
-            background: #000; 
+            background: rgba(0,0,0,0.4); 
             border: 1px solid #333; 
-            padding: 12px; 
+            padding: 14px; 
             color: white; 
-            border-radius: 6px; 
-            outline: none; 
+            border-radius: 8px; 
+            width: 100%; 
+            outline: none;
+            box-sizing: border-box;
         }
         input:focus { border-color: var(--primary); }
 
-        .btn-update { 
+        .btn-create { 
             background: var(--primary); 
             color: black; 
             font-weight: bold; 
             border: none; 
-            padding: 12px 30px; 
-            border-radius: 6px; 
+            padding: 15px 40px; 
+            border-radius: 8px; 
             cursor: pointer; 
-            margin-top: 20px;
+            margin-top: 25px;
             transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
+        .btn-create:hover { background: white; transform: translateY(-2px); }
 
-        /* Professional Table */
+        /* Table */
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th { text-align: left; padding: 15px; color: var(--primary); border-bottom: 1px solid var(--border); font-size: 13px; }
-        td { padding: 15px; border-bottom: 1px solid #222; font-size: 14px; }
+        th { text-align: left; padding: 18px; color: var(--primary); border-bottom: 1px solid var(--border); font-size: 12px; text-transform: uppercase; }
+        td { padding: 18px; border-bottom: 1px solid #1a1a1a; font-size: 14px; color: #ccc; }
 
-        .admin-footer { border-top: 1px solid #222; padding-top: 20px; }
+        .footer-admin { border-top: 1px solid #222; padding-top: 20px; }
     </style>
 </head>
 <body class="theme-gold">
@@ -140,68 +150,79 @@
         <div class="nav-menu">
             <div class="nav-item active"><i class="fas fa-project-diagram"></i> Project Board</div>
             <div class="nav-item"><i class="fas fa-tasks"></i> Assignments</div>
-            <div class="nav-item"><i class="fas fa-map-marker-alt"></i> Site Locations</div>
-            <div class="nav-item"><i class="fas fa-file-invoice"></i> Reports</div>
+            <div class="nav-item"><i class="fas fa-file-pdf"></i> Technical Drawings</div>
         </div>
 
-        <div class="theme-panel">
-            <small style="color: #555;">CHANGE CRM THEME</small>
-            <div class="theme-dots">
-                <div class="dot" style="background: #C5A059;" onclick="changeTheme('theme-gold')"></div>
-                <div class="dot" style="background: #3498db;" onclick="changeTheme('theme-blue')"></div>
-                <div class="dot" style="background: #2ecc71;" onclick="changeTheme('theme-green')"></div>
-                <div class="dot" style="background: #e74c3c;" onclick="changeTheme('theme-red')"></div>
+        <div class="theme-section">
+            <small style="color: #555; font-weight: bold; font-size: 10px;">UI THEME SELECTOR</small>
+            <div class="dots-container">
+                <div class="dot" style="background: #C5A059;" onclick="setTheme('theme-gold')"></div>
+                <div class="dot" style="background: #3498db;" onclick="setTheme('theme-blue')"></div>
+                <div class="dot" style="background: #2ecc71;" onclick="setTheme('theme-green')"></div>
+                <div class="dot" style="background: #e74c3c;" onclick="setTheme('theme-red')"></div>
             </div>
         </div>
 
-        <div class="admin-footer">
-            <small style="color: #444;">USER ROLE</small><br>
-            <b style="color: #eee;">Narmeen Amjad</b><br>
-            <small style="color: var(--primary);">Junior Architect</small>
+        <div class="footer-admin">
+            <small style="color: #444; font-size: 10px;">AUTHORIZED USER</small><br>
+            <b style="color: #eee; font-size: 15px;">Narmeen Amjad</b><br>
+            <small style="color: var(--primary); font-weight: bold;">Junior Architect</small>
         </div>
     </div>
 
     <div class="main">
-        <div class="header-title">
-            <h1>Staff Management Console</h1>
-            <p style="color: #555; margin: 5px 0;">Dubai Head Office | Project Tracking</p>
+        <div class="header-panel">
+            <h1>Architecture Project Console</h1>
+            <p style="color: #555; margin: 5px 0;">Managing Dubai Infrastructure & Design Tasks</p>
         </div>
 
-        <div class="action-box">
-            <h4 style="margin-top: 0; color: var(--primary); text-transform: uppercase;">
-                <i class="fas fa-plus-circle"></i> NEW PROJECT / ASSIGNMENT
-            </h4>
-            <div class="form-grid">
-                <input id="projName" placeholder="Project / Task Name">
-                <input id="assignee" placeholder="Assignee Name">
-                <select id="priority">
-                    <option value="High">High Priority</option>
-                    <option value="Medium">Medium Priority</option>
-                    <option value="Low">Low Priority</option>
-                </select>
-                <input id="deadline" placeholder="Deadline (e.g. 25th April)">
+        <div class="glass-box">
+            <h3 style="margin-top: 0; color: var(--primary); letter-spacing: 1px;">
+                <i class="fas fa-plus-square"></i> NEW PROJECT / ASSIGNMENT
+            </h3>
+            <div class="grid-inputs">
+                <div class="input-group">
+                    <label>Project / Task Title</label>
+                    <input id="pTitle" placeholder="e.g. Dubai Marina Villa B">
+                </div>
+                <div class="input-group">
+                    <label>Staff Assigned</label>
+                    <input id="pStaff" placeholder="Employee Name">
+                </div>
+                <div class="input-group">
+                    <label>Priority Level</label>
+                    <select id="pLevel">
+                        <option>High Priority</option>
+                        <option>Standard</option>
+                        <option>Low</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Target Deadline</label>
+                    <input id="pDate" placeholder="Date or Phase">
+                </div>
             </div>
-            <button class="btn-update" onclick="addRow()">CREATE ASSIGNMENT</button>
+            <button class="btn-create" onclick="addNew()">Initialize Task</button>
         </div>
 
-        <div class="action-box" style="padding: 0;">
+        <div class="glass-box" style="padding: 10px;">
             <table>
                 <thead>
                     <tr>
-                        <th>ASSIGNMENT</th>
-                        <th>ASSIGNED TO</th>
-                        <th>PRIORITY</th>
-                        <th>DEADLINE</th>
-                        <th>STATUS</th>
+                        <th>Project / Assignment</th>
+                        <th>Architect/Staff</th>
+                        <th>Priority</th>
+                        <th>Timeline</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
-                <tbody id="taskBody">
+                <tbody id="taskLog">
                     <tr>
-                        <td><b>JVC Villa Facade</b></td>
+                        <td><b>JVC Interior Render</b></td>
                         <td>Rahul Deshmukh</td>
-                        <td><span style="color: #e74c3c;">High</span></td>
-                        <td>22 April</td>
-                        <td>Pending</td>
+                        <td style="color: #e74c3c;">High</td>
+                        <td>25 April</td>
+                        <td><i class="fas fa-circle-notch fa-spin" style="font-size: 10px; color: var(--primary);"></i> In Progress</td>
                     </tr>
                 </tbody>
             </table>
@@ -209,35 +230,37 @@
     </div>
 
     <script>
-        function changeTheme(themeName) {
-            document.body.className = themeName;
-            localStorage.setItem('crmTheme', themeName);
+        function setTheme(t) {
+            document.body.className = t;
+            localStorage.setItem('winpro_theme', t);
         }
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('crmTheme');
-        if(savedTheme) document.body.className = savedTheme;
+        // Apply saved theme
+        const saved = localStorage.getItem('winpro_theme');
+        if(saved) document.body.className = saved;
 
-        function addRow() {
-            const name = document.getElementById('projName').value;
-            const staff = document.getElementById('assignee').value;
-            const prio = document.getElementById('priority').value;
-            const time = document.getElementById('deadline').value;
+        function addNew() {
+            const title = document.getElementById('pTitle').value;
+            const staff = document.getElementById('pStaff').value;
+            const level = document.getElementById('pLevel').value;
+            const date = document.getElementById('pDate').value;
 
-            if(name && staff) {
-                const table = document.getElementById('taskBody');
+            if(title && staff) {
+                const table = document.getElementById('taskLog');
                 const row = `<tr>
-                    <td><b>${name}</b></td>
+                    <td><b>${title}</b></td>
                     <td>${staff}</td>
-                    <td>${prio}</td>
-                    <td>${time}</td>
-                    <td>Active</td>
+                    <td>${level}</td>
+                    <td>${date}</td>
+                    <td>New Assignment</td>
                 </tr>`;
                 table.innerHTML = row + table.innerHTML;
                 
-                // Clear fields
-                document.getElementById('projName').value = "";
-                document.getElementById('assignee').value = "";
+                // Reset
+                document.getElementById('pTitle').value = "";
+                document.getElementById('pStaff').value = "";
+            } else {
+                alert("Please fill Project Title and Staff Name.");
             }
         }
     </script>
